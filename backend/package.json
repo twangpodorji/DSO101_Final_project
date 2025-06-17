@@ -1,9 +1,9 @@
 {
   "name": "pern-backend",
   "version": "0.0.1",
-  "private": true, 
+  "private": true,
   "scripts": {
-    "test": "jest", 
+    "test": "jest",
     "start": "npm run build && node build/bin/www.js",
     "build": "tsc",
     "develop": "nodemon",

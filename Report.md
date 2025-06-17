@@ -118,6 +118,9 @@ In today’s fast-paced software world, automating testing, deployment, and secu
 
      **Test Backned**
 
+
+
+
      There was a error for the connection of the database, since my database is hosted on Render.com, I had to allow the IP address of the Render server to access the database. The error was occured.
 
 #### Steps Followed:
@@ -127,11 +130,48 @@ In today’s fast-paced software world, automating testing, deployment, and secu
 
 
 
+**2. Stage2**:Jenkins Local Setup for GitHub Push Automation
+
+Configure a Jenkins pipeline to automatically push code to a GitHub repository when a commit message includes "@push".
+
+*Prerequisites*:
+- Jenkins installed and running locally. 
+
+Using homebrew;
+```bash
+brew install jenkins-lts
+```  
+
+Start Jenkins service:
+```
+brew services start jenkins-lts
+```
+
+Stop Jenkins service:
+```
+brew services stop jenkins-lts
+```
+![alt text](assets/2.1.png)
+
+- A GitHub repository with write access and a personal access token (PAT) with repo scope.
+
+![alt text](<assets/git classic token .png>)
 
 
 
+Manage Jenkins → Credentials → System → Global credentials → Add Credentials
 
+- Type: Username with password
 
+- ID: github-credentials
+
+- Username: GitHub username
+
+- Password: GitHub Personal Access Token (PAT) with repo permissions
+
+![alt text](<assets/jenkins credentials .png>)
+
+Create Pipeline Job
 
 
 

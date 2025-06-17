@@ -1,8 +1,9 @@
-/// <reference types="jest" />
-import request from "supertest";
+import request  from "supertest";
 import app from "../src/app";
 
+const jest = require("jest");
 jest.setTimeout(10000); // Set timeout to 10 seconds
+
 
 describe("BMI API", () => {
   it("should create a new BMI record", async () => {
