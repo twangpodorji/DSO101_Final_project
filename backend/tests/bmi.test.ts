@@ -1,5 +1,5 @@
 import request from "supertest";
-import app from "../src/app.ts"; // adjust if needed
+import app from "../src/app"; // ✅ Corrected
 
 describe("BMI Calculator API", () => {
   it("should return a BMI value", async () => {
@@ -8,6 +8,7 @@ describe("BMI Calculator API", () => {
       .send({ height: 170, weight: 65, age: 25 });
 
     expect(response.statusCode).toBe(200);
-    expect(response.body.bmi).toBeDefined();
+    expect(response.body).toHaveProperty("bmi");
+    expect(typeof response.body.bmi).toBe("number");
   });
 });
