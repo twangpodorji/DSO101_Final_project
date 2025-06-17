@@ -26,6 +26,19 @@ router.post('/create/bmi', errorHandler(async (req: Request, res: Response) => {
   res.status(201).json(record);
 }));
 
+router.post("/", (req: Request, res: Response) => {
+  const { height, weight } = req.body;
+
+  if (!height || !weight) {
+    return res.status(400).json({ error: "Missing height or weight" });
+  }
+
+  const heightInMeters = height / 100;
+  const bmi = weight / (heightInMeters * heightInMeters);
+
+  res.status(200).json({ bmi });
+});
+
 export default router
 
 

@@ -10,6 +10,8 @@ import routes from "./routes";
 import { databaseConfig } from "./config";
 import HTTP_CODE from "./errors/httpCodes";
 import dotenv from "dotenv";
+import bodyParser from "body-parser";
+import bmiRouter from "./routes/bmi"; // 
 dotenv.config();
 
 // this is required to ensure that the environment variables are loaded before any other imports
@@ -46,12 +48,14 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(bodyParser.json());
 
 export const API_PREFIX = "/api";
 
 app.use(`${API_PREFIX}/public`, express.static("public"));
 app.use(`${API_PREFIX}/uploads`, express.static("uploads"));
 app.use(API_PREFIX, routes);
+app.use("/api/bmi", bmiRouter); 
 
 // 404 Not Found Handler
 app.use(
@@ -59,6 +63,12 @@ app.use(
     throw new NotFoundError("Endpoint not Found");
   })
 );
+
+// Catch all for undefined routes (optional)
+app.use("*", (req, res) => {
+  console.log("Endpoint not Found");
+  res.status(404).send("Endpoint Not Found");
+});
 
 interface ExpressError extends Error {
   status?: number;
