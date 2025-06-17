@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        nodejs 'nodejs'  // This name must match the Node.js installation name in Jenkins
+    }
+
     environment {
         GIT_CREDENTIALS_ID = 'github-credentials' // Set this in Jenkins
         REPO_URL = 'https://github.com/twangpodorji/DSO101_Final_project.git'
