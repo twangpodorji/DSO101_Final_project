@@ -10,8 +10,10 @@ COPY package-lock.json ./
 COPY .eslintrc.js ./
 COPY tsconfig.json ./
 
+# Ensure webpack.config.ts exists before copying
+
 # Install dependencies
-RUN npm install
+RUN npm install --legacy-peer-deps
 
 # Expose the port
 EXPOSE 3000
