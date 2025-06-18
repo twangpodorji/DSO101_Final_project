@@ -116,12 +116,11 @@ In today’s fast-paced software world, automating testing, deployment, and secu
      ```
      ![alt text](assets/backend1.png)
 
+     ![alt text](<assets/connection withh db .png>)
+
      **Test Backned**
 
-
-
-
-     There was a error for the connection of the database, since my database is hosted on Render.com, I had to allow the IP address of the Render server to access the database. The error was occured.
+     ![alt text](assets/backendtest.png)
 
 #### Steps Followed:
 
@@ -169,9 +168,15 @@ Manage Jenkins → Credentials → System → Global credentials → Add Credent
 
 - Password: GitHub Personal Access Token (PAT) with repo permissions
 
+![alt text](<assets/git credentials in jenkins .png>)
+
 ![alt text](<assets/jenkins credentials .png>)
 
-Create Pipeline Job
+Test your pipeline 
+
+![alt text](<assets/Stage2 output.png>)
+
+![alt text](assets/output2.1.png)
 
 
 
@@ -180,7 +185,27 @@ Create Pipeline Job
 
 
 
+2.1 GitHub Actions Pipeline for Docker Builds
 
+steps involved:
+- stroing dockerhub credentials in GitHub secrets. 
+
+![alt text](<assets/github containing dockerhub secretes .png>)
+
+2.2 Create GitHub Workflow File
+
+`.github/workflows/docker-build.yml`
+
+![alt text](assets/githubaction1.png)
+
+3: Verify the Workflow
+- Commit and push the changes to GitHub.
+
+- Go to the Actions tab in your GitHub repo.
+
+- We will see the workflow triggered by the push.
+
+- After success, go to Docker Hub and verify images are pushed.
 
 
 

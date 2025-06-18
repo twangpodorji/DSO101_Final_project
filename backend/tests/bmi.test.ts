@@ -1,5 +1,5 @@
 import request from "supertest";
-import app from "../src/app"; // ✅ Corrected
+import app from "../src/app"; // 
 
 describe("BMI Calculator API", () => {
   it("should return a BMI value", async () => {
