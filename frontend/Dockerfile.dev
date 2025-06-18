@@ -10,9 +10,6 @@ COPY package-lock.json ./
 COPY .eslintrc.js ./
 COPY tsconfig.json ./
 
-# Ensure webpack.config.ts exists before copying
-COPY webpack.config.ts ./ # Remove this line if the file is not needed
-
 # Install dependencies
 RUN npm install
 
