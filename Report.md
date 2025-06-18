@@ -21,6 +21,7 @@ In today’s fast-paced software world, automating testing, deployment, and secu
      ```gitclone
      git clone https://github.com/Darshansgit/DSO101_SE_project.git
      ```
+       
           
      **The Project Folder Overview**
      ```Project structure
@@ -175,7 +176,6 @@ Test your pipeline
 ![alt text](assets/output2.1.png)
 
 
-
 2.1 GitHub Actions Pipeline for Docker Builds
 
 steps involved:
@@ -197,6 +197,7 @@ steps involved:
 - We will see the workflow triggered by the push.
 
 - After success, go to Docker Hub and verify images are pushed.
+
 
 
 ### Challenge and solution
