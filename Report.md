@@ -95,7 +95,7 @@ In today’s fast-paced software world, automating testing, deployment, and secu
 
      ![alt text](assets/frontend1.png)
 
-     **Frotend Test**
+     **Frotend Test Using Jest**: Successfully tested the frontend using Jest.
 
      ![alt text](<assets/frontend test.png>)
 
@@ -120,6 +120,8 @@ In today’s fast-paced software world, automating testing, deployment, and secu
      npm start
      ```
      ![alt text](assets/backend1.png)
+
+     Connection with database debugging:
 
      ![alt text](<assets/connection withh db .png>)
 
@@ -219,7 +221,11 @@ Go to Render.com and create a new web service.
 
 ![alt text](<assets/render deployment backend.png>)
 
+Sucessfully Deployed Backend service on render 
 
+![alt text](<assets/service backend live.png>)
+
+![alt text](<assets/live backend .png>)
 
 
 
