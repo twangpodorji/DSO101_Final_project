@@ -95,6 +95,10 @@ In today’s fast-paced software world, automating testing, deployment, and secu
 
      ![alt text](assets/frontend1.png)
 
+     **Frotend Test**
+     
+     ![alt text](<assets/frontend test.png>)
+
      **Backend**
 
      Creating a `postgres database` in `Render.com`. (for this project I have used free-tier database only for testing purpose)

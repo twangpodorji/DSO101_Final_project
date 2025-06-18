@@ -1,373 +1,686 @@
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
-<a name="readme-top"></a>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
-
-
-
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
-<!-- [![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url] -->
-
-
-
-<!-- PROJECT LOGO -->
-<br />
-<div align="center">
-  <h2>PERN Dockerized Stack</h2>
-  <br />
-
-[![PostgreSQL][PostgreSQL]][PostgreSQL-url]
-[![Express][Express]][Express-url]
-[![React][React.js]][React-url]
-[![Nodejs][Node.js]][Node-url]
-[![Docker][Docker]][Docker-url]
-
-  <p>
-    <br />
-    <a href="https://github.com/adefrutoscasado/pern-dockerized-stack/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/adefrutoscasado/pern-dockerized-stack/issues">Request Feature</a>
-  </p>
-</div>
-
-
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-    </li>
-    <li>
-      <a href="#variants">Variants</a>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <!-- <li><a href="#license">License</a></li> -->
-    <li><a href="#contact">Contact</a></li>
-    <!-- <li><a href="#acknowledgments">Acknowledgments</a></li> -->
-  </ol>
-</details>
-
-
-
-<!-- ABOUT THE PROJECT -->
-## About The Project
-
-This project implements the main features to deploy a PERN stack application.
-
-- No `create-react-app` clones. A minimal webpack config is provided. No hacks to configure!
-- Development hot reload for both backend and frontend.
-- Node modules managed entirely by docker. Package version integrity across developers and environments. Including IDE access to node modules.
-- Docker versioning for easy deploys and rollbacks.
-- Endpoint and docker volume to upload files.
-- Database migrations (Optional).
-
-<!-- VARIANTS -->
-## Variants
-
-Want even more boilerplate code? Try following variant:
-
-- [Version including `prisma`](https://github.com/adefrutoscasado/pern-dockerized-stack/tree/prisma)
-
-
-<!-- GETTING STARTED -->
-## Getting Started
-
-### Prerequisites
+# DSO101: Continuous Integration and Continuous Deployment - Final Project
+## Project Overview
+This project implements a DevSecOps pipeline for a PERN stack (PostgreSQL, Express, React, Node.js) application using free-tier tools:
 
-You must have following software installed in your System:
-- `docker`
-- `docker-compose`
+- **Jenkins** (for automated GitHub pushes)
 
+- **GitHub Actions** (for Docker builds & pushes)
 
+- **Docker Hub** (for container storage)
 
-### Installation
-
-1. Clone the repo:
-    ```sh
-    git clone https://github.com/adefrutoscasado/pern-dockerized-stack.git
-    ```
-2. Start the container:
-    ```sh
-    cd pern-dockerized-stack/docker
-    docker-compose -f docker-compose-dev.yml up
-    ```
-    Or, to keep logs separate, start each service individually in different terminals:
-
-    ```sh
-    cd pern-dockerized-stack/docker
-    docker-compose -f docker-compose-dev.yml up database
-    docker-compose -f docker-compose-dev.yml up backend
-    docker-compose -f docker-compose-dev.yml up frontend
-    ```
-    Frontend will be served at [localhost:3010](localhost:3010)
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-<details>
-  <summary>Installing a package</summary>
-  <ol>
-  <br />
-
-  In order to share a similar environment across team, packages are managed inside the container. This is important, since different machines, node versions or packages can behave differently. Never execute `npm install package` by yourself, since it would be running under your local node installation. Instead, add the package to the `package.json` and then run:
-
-  ```bash
-  docker-compose -f docker-compose-dev.yml build backend
-  # or
-  docker-compose -f docker-compose-dev.yml build frontend
-  ```
-
-  After this, starting the containuer will dump the updated node modules to your local machine, so your IDE will be able to access it.
+- **Render** (for deployment)
 
-  <br />
-  </ol>
-</details>
+The goal is to **automate code synchronization, deployment, and security checks** while adhering to **zero-cost constraints.**
+
+## Repository Setup
+
+1. **Create a GitHub Repository**: Initialized a new repository for assignment. [DSO-FinalAssignment](https://github.com/C-gyeltshen/DSO-FinalAssignment.git)
+2. **Clone the Repository**: Cloned the repository to your local machine.
 
-<details>
-  <summary>Erasing all data (uploads folder and database data)</summary>
-  <ol>
-  <br />
+   ```bash
+   git clone https://github.com/adefrutoscasado/pern-dockerized-stack.git
+   ```
+   ![1](./image/1.png)
+3. Remove the existing `.git` directory to start fresh:
 
-  To reset all volumes completely use following command (**data will be lost**):
-  ```
-  docker-compose -f docker-compose-dev.yml down -v
-  ```
+   ```bash
+   rm -rf .git
+   ```
+   ![2](./image/2.png)
+
+4. **Initialize a New Git Repository**: Initialize a new Git repository in the cloned directory.
+   ```bash
+   git init
+   git add .
+   git commit -m "Initial commit"
+   git remote add origin https://github.com/C-gyeltshen/DSO-FinalAssignment.git
+    git branch -M main
+    git push -u origin main
+   ```
+    ![3](./image/3.png)
+
+## Project Structure
+The project is structured as follows:
+
+```
+├── backend/
+├── docker/
+├── frontend/
+├── image/
+├── LICENSE.md
+└── README.md
+```
+
+## BMI Setup Instructions
+
+### 1. **backend/**: Contains the Node.js and Express backend code.
+
+   ```bash 
+   cd backend
+   npm install
+   ```
+   * Create a `postgres database` in `render.com`.
+
+      ![4](./image/4.png)
+
+   * Create a `.env` file in the `backend` directory with the following content:
+
+      ```bash
+      DATABASE_HOST="your database host"
+      DATABASE_PORT="port your db is rinning on"
+      DATABASE_USER="your database username"
+      DATABASE_PASSWORD="database password"
+      DATABASE_NAME="your database name"
+      ```
+
+   * Run the backend server:
+
+      ```bash
+      npm start
+      ```
+      ![5](./image/5.png)
+
+
+### 2. **frontend/**: Contains the React frontend code.
+
+   ```bash
+   cd frontend
+   npm install
+   ```
+   ```bash
+   npm start
+   ```
+   ![6](./image/6.png)
 
-  <br />
-  </ol>
-</details>
+   * Edit the `src/app.js` file and add code for the BMI calculator:
 
-<details>
-  <summary>Erasing uploads folder</summary>
-  <ol>
-  <br />
+      ![10](./image/10.png)
 
-  List all volumes using:
-
-  ```bash
-  docker volume ls
-  ```
-  Remove the specified volume using:
-  ```bash
-  docker volume rm docker_backend-uploads
-  ```
-
-  <br />
-  </ol>
-</details>
-
-<details>
-  <summary>Erasing database data</summary>
-  <ol>
-  <br />
-
-  List all volumes using:
-
-  ```bash
-  docker volume ls
-  ```
-  Remove the specified volume using:
-
-  ```bash
-  docker volume rm docker_database-data
-  ```
-
-  <br />
-  </ol>
-</details>
+### 3. **Database Setup**
 
-<details>
-  <summary>Log management</summary>
-  <ol>
-  <br />
-
-  Logs can take up a lot of space on a server's hard drive, which can result in a lack of available space for other important files. By limiting the size of the logs, you can ensure that enough space is available for the necessary files. Following configuration at `docker/docker-compose-prod.yml` sets a maximum of 5 log files with a max size of 10 Mb each. So at most 50 Mb of logs for that container. Tune those numbers as you see fit.
-
-  ```yaml
-  logging:
-    driver: "json-file"
-    options:
-      max-size: "10m"
-      max-file: "5"
-  ```
-
-  <br />
-  </ol>
-</details>
-
-<details>
-  <summary>Migrations</summary>
-  <ol>
-  <br />
-
-  Migrations are optional. If you prefer to manage dabatase changes manually, just ignore this part.
-  Migrations are configured at `backend/database/migrations` and are managed by [Knex](https://knexjs.org/guide/migrations.html). Two disabled files are included as example. To create a migration, just create a new file using `<filename>.js`. The order of execution of migrations is defined by the filename.
-
-  <br />
-  </ol>
-</details>
-
-<details>
-  <summary>Installing docker `buildx` plugin to push images to different machine architectures</summary>
-  <ol>
-  <br />
-
-  Download `buildx` binaries for your development local machine:
-  [https://github.com/docker/buildx/releases](https://github.com/docker/buildx/releases)
-
-  Rename the binary to `docker-buildx` and move the binary file to `~/.docker/cli-plugins/docker-buildx`. Give permissions to execute:
-
-  ```bash
-  chmod +x ~/.docker/cli-plugins/docker-buildx
-  ```
-
-  Install following needed packages:
-
-  ```bash
-  sudo apt install -y qemu-user-static binfmt-support
-  ```
-
-  <br />
-  </ol>
-</details>
-
-<details>
-  <summary>Pulling changes from original repository</summary>
-  <ol>
-  <br />
-
-  Once you cloned this repository, you can still pull changes from original repository using following steps:
-
-  ```bash
-  git remote add upstream git@github.com:adefrutoscasado/pern-dockerized-stack.git
-  ```
-  ```bash
-  git pull upstream main
-  ```
-
-  <br />
-  </ol>
-</details>
-
-<!-- ROADMAP -->
-## Roadmap
-
-- &#x2611; Backend
-  - &#x2611; Hot reload at development
-  - &#x2611; Package version integrity
-  - &#x2611; Production docker compose
-  - &#x2611; Database migrations
-  - &#x2611; Create upload file endpoint
-  - &#x2611; Log management
-- &#x2611; Frontend
-  - &#x2611; Hot reload at development
-  - &#x2611; Package version integrity
-  - &#x2611; Production docker compose
-- &#x2610; Docker registry instructions (Docker versioning)
-- &#x2610; Usage instructions
-
-See the [open issues](https://github.com/adefrutoscasado/pern-dockerized-stack/issues) for a full list of proposed features (and known issues).
-
-
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.md` for more information.
-
-
-
-<!-- CONTACT -->
-## Contact
-
-Project Link: [https://github.com/adefrutoscasado/pern-dockerized-stack](https://github.com/adefrutoscasado/pern-dockerized-stack)
-
-
-
-<!-- ACKNOWLEDGMENTS -->
-<!-- ## Acknowledgments
-
-* []()
-* []()
-* []() -->
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-<!-- [contributors-shield]: https://img.shields.io/github/contributors/adefrutoscasado/pern-dockerized-stack.svg?style=for-the-badge
-[contributors-url]: https://github.com/adefrutoscasado/pern-dockerized-stack/graphs/contributors
-
-[forks-shield]: https://img.shields.io/github/forks/adefrutoscasado/pern-dockerized-stack.svg?style=for-the-badge
-[forks-url]: https://github.com/adefrutoscasado/pern-dockerized-stack/network/members
-
-[stars-shield]: https://img.shields.io/github/stars/adefrutoscasado/pern-dockerized-stack.svg?style=for-the-badge
-[stars-url]: https://github.com/adefrutoscasado/pern-dockerized-stack/stargazers
-
-[issues-shield]: https://img.shields.io/github/issues/adefrutoscasado/pern-dockerized-stack.svg?style=for-the-badge
-[issues-url]: https://github.com/adefrutoscasado/pern-dockerized-stack/issues
-
-[license-shield]: https://img.shields.io/github/license/adefrutoscasado/pern-dockerized-stack.svg?style=for-the-badge
-[license-url]: https://github.com/adefrutoscasado/pern-dockerized-stack/blob/master/LICENSE.txt
-
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username -->
-
-[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[React-url]: https://reactjs.org/
-
-[Node.js]: https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white
-[Node-url]: https://nodejs.org/
-
-[PostgreSQL]: https://img.shields.io/badge/postgresql-336690.svg?style=for-the-badge&logo=postgresql&logoColor=white
-[PostgreSQL-url]: https://www.postgresql.org//
-
-[Docker]: https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white
-[Docker-url]: https://www.docker.com/
-
-[Express]: https://img.shields.io/badge/express-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB
-[Express-url]: https://expressjs.com/
+   * Create `bmi_recordes` table in the database using the following SQL command:
+
+      ```sql
+      CREATE TABLE bmi_records (
+         id SERIAL PRIMARY KEY,
+         height NUMERIC(5,2) NOT NULL,
+         weight NUMERIC(5,2) NOT NULL,
+         age INTEGER NOT NULL,
+         bmi NUMERIC(5,2) NOT NULL,
+         created_at TIMESTAMPTZ DEFAULT NOW()
+      );
+      ```
+      ![7](./image/7.png)
+      ![8](./image/8.png)
+      ![9](./image/9.png)
+
+### 3. Add new endpoint in `backend/routes/bmi.js`:
+
+   * Insert dummy data in `bmi_records` table using the following SQL command:
+
+      ```sql
+      INSERT INTO bmi_records (height, weight, age, bmi)
+      VALUES 
+      (1.60, 50, 22, 19.53),
+      (1.75, 70, 25, 22.86),
+      (1.68, 80, 30, 28.32),
+      (1.82, 90, 35, 27.17),
+      (1.55, 45, 20, 18.73),
+      (1.90, 100, 40, 27.7),
+      (1.72, 65, 28, 21.97),
+      (1.78, 85, 32, 26.8),
+      (1.60, 60, 26, 23.44),
+      (1.70, 95, 38, 32.87);
+      ```
+      ![11](./image/11.png)
+
+   * Check the database to ensure the data is inserted correctly:
+
+      ![12](./image/12.png)
+
+   * Create `endpoint` to get all BMI records:
+
+      ```bash
+         touch backend/routes/bmi.js
+      ```
+
+      ```javascript
+         import { Router, Request, Response } from 'express'
+         import { errorHandler } from '../utils'
+         import knex from 'knex'
+         import { databaseConfig } from '../config'
+
+         const router = Router()
+         const db = knex(databaseConfig)
+
+         // GET /api/user/bmi - fetch all BMI records
+         router.get('/user/bmi', errorHandler(async (req: Request, res: Response) => {
+         const records = await db('bmi_records').select('*').orderBy(' created_at ', 'desc')
+         res.json(records)
+         }))
+
+         export default router
+      ```
+
+   * `Test` the endpoint using `Postman`:
+   
+      ![13](./image/13.png)
+
+   * Create new `endpoint` for add BMI records under `backend/routes/bmi.js`:
+
+      ```javascript
+         router.post('/create/bmi', errorHandler(async (req: Request, res: Response) => {
+         const { id, height, weight,age, bmi } = req.body;
+
+         if (!id || !height || !weight || !age || !bmi) {
+            return res.status(400).json({ message: 'Missing required fields' });
+         }
+
+         const [record] = await db('bmi_records')
+            .insert({ id, height, weight, bmi })
+            .returning('*');
+
+         res.status(201).json(record);
+         }));
+      ```
+
+   * Test the new endpoint using `Postman`:
+
+      ![14](./image/14.png)
+
+## Writing Tests
+
+* Install the required dev dependencies for testing:
+
+   ```bash
+   npm install --save-dev jest supertest @types/jest @types/supertest
+   ```
+
+* Create test file `backend/tests/bmi.test.js`:
+
+   ```javascript
+         /// <reference types="jest" />
+      import request from 'supertest'
+      import app from '../src/app'
+
+      describe('BMI API', () => {
+      it('should create a new BMI record', async () => {
+         const res = await request(app)
+            .post('/api/create/bmi')
+            .send({
+            id: Math.floor(Math.random() * 1000000),
+            height: 1.75,
+            weight: 70,
+            age: 25,
+            bmi: 22.86
+            })
+            .set('Accept', 'application/json')
+
+         expect(res.status).toBe(201)
+         expect(res.body).toHaveProperty('id')
+         expect(res.body.height).toBe(1.75)
+         expect(res.body.weight).toBe(70)
+         expect(res.body.age).toBe(25)
+         expect(res.body.bmi).toBeCloseTo(22.86)
+      })
+
+      it('should fail with missing fields', async () => {
+         const res = await request(app)
+            .post('/api/create/bmi')
+            .send({
+            height: 1.75,
+            weight: 70,
+            age: 25
+            // bmi missing
+            })
+            .set('Accept', 'application/json')
+
+         expect(res.status).toBe(400)
+         expect(res.body).toHaveProperty('message', 'Missing required fields')
+      })
+      })
+   ```
+   ![15](./image/15.png)
+
+   * Create test file for frontend `frontend/src/App.test.js`:
+
+   ```javascript
+      import React from 'react'
+      import { render, screen, fireEvent, waitFor } from '@testing-library/react'
+      import BMICalculator from './App'
+      import '@testing-library/jest-dom'
+
+      beforeEach(() => {
+      global.fetch = jest.fn((url, options) => {
+         if (url === '/api/user/bmi' && (!options || options.method === 'GET')) {
+            return Promise.resolve({
+            ok: true,
+            json: () => Promise.resolve([
+               {
+                  id: '1',
+                  height: 1.75,
+                  weight: 70,
+                  age: 25,
+                  bmi: 22.86,
+                  createdAt: new Date().toISOString()
+               }
+            ])
+            })
+         }
+         if (url === '/api/create/bmi' && options && options.method === 'POST') {
+            return Promise.resolve({
+            ok: true,
+            json: () => Promise.resolve({})
+            })
+         }
+         if (url && url.startsWith('/api/user/bmi/') && options && options.method === 'DELETE') {
+            return Promise.resolve({ ok: true, json: () => Promise.resolve({}) })
+         }
+         return Promise.resolve({ ok: false, json: () => Promise.resolve({}) })
+      }) as any
+      window.confirm = jest.fn(() => true)
+      })
+
+      afterEach(() => {
+      jest.clearAllMocks()
+      })
+
+      test('renders calculator tab and input fields', () => {
+      render(<BMICalculator />)
+      expect(screen.getByText(/BMI Calculator & Tracker/i)).toBeInTheDocument()
+      expect(screen.getByLabelText(/Height/i)).toBeInTheDocument()
+      expect(screen.getByLabelText(/Weight/i)).toBeInTheDocument()
+      expect(screen.getByLabelText(/Age/i)).toBeInTheDocument()
+      })
+
+      test('calculates BMI and shows result (Calculate Only)', () => {
+      render(<BMICalculator />)
+      fireEvent.change(screen.getByPlaceholderText(/e.g., 1.75/i), { target: { value: '1.75' } })
+      fireEvent.change(screen.getByPlaceholderText(/e.g., 70.5/i), { target: { value: '70' } })
+      fireEvent.change(screen.getByPlaceholderText(/e.g., 25/i), { target: { value: '25' } })
+      fireEvent.click(screen.getByText(/🧮 Calculate Only/i))
+      expect(screen.getByText(/BMI calculated successfully/i)).toBeInTheDocument()
+      expect(screen.getByText(/Your BMI Result/i)).toBeInTheDocument()
+      expect(screen.getByText(/BMI: 22.86/i)).toBeInTheDocument()
+      expect(screen.getByText(/Category: Normal weight/i)).toBeInTheDocument()
+      })
+
+      test('shows error for invalid input', () => {
+      render(<BMICalculator />)
+      fireEvent.change(screen.getByPlaceholderText(/e.g., 1.75/i), { target: { value: '' } })
+      fireEvent.change(screen.getByPlaceholderText(/e.g., 70.5/i), { target: { value: '' } })
+      fireEvent.click(screen.getByText(/🧮 Calculate Only/i))
+      expect(screen.getByText(/Please enter valid height and weight/i)).toBeInTheDocument()
+      })
+
+      test('shows error for out-of-range input', () => {
+      render(<BMICalculator />)
+      fireEvent.change(screen.getByPlaceholderText(/e.g., 1.75/i), { target: { value: '0.2' } })
+      fireEvent.change(screen.getByPlaceholderText(/e.g., 70.5/i), { target: { value: '5' } })
+      fireEvent.click(screen.getByText(/🧮 Calculate Only/i))
+      expect(screen.getByText(/Please enter a realistic height between 0.5m and 3m/i)).toBeInTheDocument()
+      })
+
+      test('saves BMI and clears form', async () => {
+      render(<BMICalculator />)
+      fireEvent.change(screen.getByPlaceholderText(/e.g., 1.75/i), { target: { value: '1.75' } })
+      fireEvent.change(screen.getByPlaceholderText(/e.g., 70.5/i), { target: { value: '70' } })
+      fireEvent.change(screen.getByPlaceholderText(/e.g., 25/i), { target: { value: '25' } })
+      fireEvent.click(screen.getByText(/💾 Calculate & Save BMI/i))
+      await waitFor(() => {
+         expect(screen.getByText(/BMI calculated and saved successfully/i)).toBeInTheDocument()
+      })
+      expect(screen.getByPlaceholderText(/e.g., 1.75/i)).toHaveValue('')
+      expect(screen.getByPlaceholderText(/e.g., 70.5/i)).toHaveValue('')
+      expect(screen.getByPlaceholderText(/e.g., 25/i)).toHaveValue('')
+      })
+
+      test('switches to history tab and loads BMI history', async () => {
+      render(<BMICalculator />)
+      fireEvent.click(screen.getByText(/BMI History/i))
+      await waitFor(() => {
+         expect(screen.getByText(/Your BMI History/i)).toBeInTheDocument()
+         expect(screen.getByText(/Total Records: 1/i)).toBeInTheDocument()
+         expect(screen.getByText(/22.86/)).toBeInTheDocument()
+         expect(screen.getByText(/Normal weight/)).toBeInTheDocument()
+      })
+      })
+
+      test('deletes a BMI record', async () => {
+      render(<BMICalculator />)
+      fireEvent.click(screen.getByText(/BMI History/i))
+      await waitFor(() => expect(screen.getByText(/🗑️ Delete/i)).toBeInTheDocument())
+      fireEvent.click(screen.getByText(/🗑️ Delete/i))
+      await waitFor(() => expect(screen.getByText(/BMI record deleted successfully/i)).toBeInTheDocument())
+      })
+
+      test('clear form button resets fields', () => {
+      render(<BMICalculator />)
+      fireEvent.change(screen.getByPlaceholderText(/e.g., 1.75/i), { target: { value: '1.75' } })
+      fireEvent.change(screen.getByPlaceholderText(/e.g., 70.5/i), { target: { value: '70' } })
+      fireEvent.change(screen.getByPlaceholderText(/e.g., 25/i), { target: { value: '25' } })
+      fireEvent.click(screen.getByText(/🗑️ Clear Form/i))
+      expect(screen.getByPlaceholderText(/e.g., 1.75/i)).toHaveValue('')
+      expect(screen.getByPlaceholderText(/e.g., 70.5/i)).toHaveValue('')
+      expect(screen.getByPlaceholderText(/e.g., 25/i)).toHaveValue('')
+      })
+   ```
+   ![16](./image/16.png)
+
+## Stage 1: Docker Configuration
+
+### 1. Docker `volumes` to save the BMI data.
+
+   I am using `Renders free-tier PostgreSQL database` which is fully managed, hosted separately from the `BMI` application container.
+
+   It is connected using `connection strings`, not by mounting database files via Docker volumes.
+
+   Docker volumes are only used when you run your own `database inside a container`, e.g., for local development.
+
+
+### 2. `Writing` and `running tests` using the `docker-compose.yaml` file
+
+
+
+## Stage 2: Jenkins Local Setup for GitHub Push Automation
+
+### **Objective**: 
+* Configure Jenkins to automatically push code to GitHub when a commit message contains @push.
+
+### **Prerequisites**:
+
+* **Jenkins** installed locally or on a server.
+
+   ```bash 
+      brew install jenkins-lts
+   ```
+
+   ```bash 
+      brew services start jenkins-lts
+   ```
+   ![17](./image/17.png)
+
+### **Steps**:
+
+1. Create jekinsfile in the root directory of your project:
+
+   ```bash
+   touch jenkinsfile
+   ```
+2. Add the following content to the `Jenkinsfile`:
+
+   ```groovy
+      pipeline {
+         agent any
+         stages {
+            stage('Build') {
+               steps {
+                  script {
+                     if (env.GIT_COMMIT_MESSAGE.contains('@push')) {
+                        sh 'git push origin main'
+                     } else {
+                        echo 'No @push in commit message, skipping push.'
+                     }
+                  }
+               }
+            }
+         }
+      }
+   ```
+3. Add GitHub credentials to Jenkins:
+
+   * Go to `Jenkins Dashboard` > `Manage Jenkins` > `Manage Credentials`.
+
+      ![19](./image/19.png)
+
+   * Add a new credential with your `GitHub username` and `personal access token.`
+
+      ![18](./image/18.png)
+
+
+4. Create a new Jenkins pipeline `dso-final-pipeline`:
+
+   * Go to `Jenkins Dashboard` > `New Item`.
+
+   * Select `Pipeline`, name it `dso-final-pipeline`, and click `OK`.
+
+   * In the pipeline configuration, set the following:
+
+      - **Definition**: Pipeline script from SCM
+      - **SCM**: Git
+      - **Repository URL**: `https://github.com/C-gyeltshen/DSO-FinalAssignment.git`
+      - **Credentials**: Select the credentials `GITHUB_CREDENTIALS`
+      - **Branch Specifier**: `*/main`
+   * In the `Script Path`, set it to `Jenkinsfile`.
+
+      ![20](./image/20.png)
+
+      ![21](./image/21.png)
+
+5. Save the pipeline configuration and build the pipeline.
+
+   * Go to `Jenkins Dashboard` > `dso-final-pipeline` > `Build Now`.
+
+   * Check the console output to see if the pipeline executed successfully.
+
+      ![22](./image/22.png)
+
+6. **Test the Pipeline**:
+
+   * Make a commit with the message `@push` in your local repository:
+
+      ```bash
+      git commit -m "Update README @push"
+      git push origin main
+      ```
+
+   * Check the Jenkins console output to verify that the code was pushed to GitHub.
+
+      ![23](./image/23.png)
+
+      ![24](./image/24.png)
+
+      ![25](./image/25.png)
+
+## Stage 3: GitHub Actions for Docker Build and Push
+
+### **Objective:**
+* Build and push Docker images for each service (frontend, backend, DB) to Docker Hub.
+
+### **Prerequisites:**
+
+* Docker installed on your local machine.
+* Docker Hub account.
+* GitHub repository for your project.
+### **Steps:**
+
+1. Store `Docker Hub Credentials` in `GitHub Secrets`:
+
+   * Go to your GitHub repository.
+   * Click on `Settings` > `Secrets and variables` > `Actions`.
+
+      ![26](./image/26.png)
+
+   * Click on `New repository secret`.
+   * Add the following secrets:
+      - `DOCKERHUB_USERNAME`: Your Docker Hub username.
+      - `DOCKERHUB_TOKEN`: Your Docker Hub access token.
+
+         ![27](./image/27.png)
+
+
+2. Create `.github/workflows/docker-build.yml` in your repository:
+
+   ```bash
+   touch .github/workflows/docker-build.yml
+   ```
+3. Add the following content to `docker-build.yml`:
+
+   ```yaml
+      name: Docker Build and Push
+
+      on:
+      push:
+         branches:
+            - main
+            - develop
+      pull_request:
+         branches:
+            - main
+            - develop
+
+      env:
+      FRONTEND_IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/pern-frontend
+      BACKEND_IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/pern-backend
+      DOCKER_BUILDKIT: 1
+
+      jobs:
+      build-and-push:
+         runs-on: ubuntu-latest
+         
+         steps:
+            - name: Checkout code
+            uses: actions/checkout@v4
+            with:
+               fetch-depth: 0
+
+            - name: Set up Docker Buildx
+            uses: docker/setup-buildx-action@v3
+            with:
+               buildkitd-flags: --debug
+
+            - name: Cache Docker layers
+            uses: actions/cache@v3
+            with:
+               path: /tmp/.buildx-cache
+               key: ${{ runner.os }}-buildx-${{ github.sha }}
+               restore-keys: |
+                  ${{ runner.os }}-buildx-
+
+            - name: Login to Docker Hub
+            uses: docker/login-action@v3
+            with:
+               username: ${{ secrets.DOCKERHUB_USERNAME }}
+               password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+            - name: Build and push Frontend image
+            uses: docker/build-push-action@v5
+            with:
+               context: ./frontend
+               file: ./frontend/Dockerfile.prod
+               push: ${{ github.event_name != 'pull_request' }}
+               tags: |
+                  ${{ env.FRONTEND_IMAGE }}:latest
+                  ${{ env.FRONTEND_IMAGE }}:${{ github.sha }}
+               cache-from: |
+                  type=local,src=/tmp/.buildx-cache
+                  type=registry,ref=${{ env.FRONTEND_IMAGE }}:latest
+               cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+
+            - name: Build and push Backend image  
+            uses: docker/build-push-action@v5
+            with:
+               context: ./backend
+               file: ./backend/Dockerfile.prod
+               push: ${{ github.event_name != 'pull_request' }}
+               tags: |
+                  ${{ env.BACKEND_IMAGE }}:latest
+                  ${{ env.BACKEND_IMAGE }}:${{ github.sha }}
+               cache-from: |
+                  type=local,src=/tmp/.buildx-cache
+                  type=registry,ref=${{ env.BACKEND_IMAGE }}:latest
+               cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+
+            # Temp fix for cache
+            - name: Move cache
+            run: |
+               rm -rf /tmp/.buildx-cache
+               mv /tmp/.buildx-cache-new /tmp/.buildx-cache
+   ```
+
+4. Commit and push the changes to your repository:
+
+   ```bash
+   git add .
+   git commit -m "Add GitHub Actions for Docker build and push"
+   git push origin main
+   ```
+5. Check the Actions tab in your GitHub repository to see if the workflow ran successfully.
+   ![28](./image/28.png)
+
+   ![29](./image/29.png)
+   ![30](./image/30.png)
+   ![31](./image/31.png)
+
+## Stage 4: Deploy to Render 
+
+### **Objective**:
+ Deploy services to Render.
+
+### Steps:
+1. **Create a Render Account**: Sign up for a free account on [Render](https://render.com/).
+2. **Create a New Web Service**:
+   * Go to the Render dashboard and click on "New" > "Web Service".
+   * Select Deploy Existing Image.
+   * Choose the Docker image you pushed to Docker Hub.
+      1. Deploying Backend:
+      * Provide the Docker image URL for the frontend service.
+         `gyeltshen23/pern-frontend`
+
+         ![33](./image/33.png)
+
+      * Provide the environment variables for the backend service:
+         - `DATABASE_HOST`: Your Render PostgreSQL database host.
+         - `DATABASE_PORT`: Your Render PostgreSQL database port.
+         - `DATABASE_USER`: Your Render PostgreSQL database username.
+         - `DATABASE_PASSWORD`: Your Render PostgreSQL database password.
+         - `DATABASE_NAME`: Your Render PostgreSQL database name.
+
+            ![34](./image/34.png)
+
+            ![35](./image/35.png)
+
+            [Backend Endpoint](https://pern-backend.onrender.com/api/user/bmi)
+
+3. Chnage the endoint URL in the frontend code to point to the Render backend service:
+
+   * Open `frontend/src/App.js` and update the API endpoint:
+
+      ![36](./image/36.png)
+
+      ![37](./image/37.png)
+
+   
+
+4. Commit and push the changes to your repository:
+
+   ```bash
+   git add .
+   git commit -m "Update API endpoint to Render backend"
+   git push origin main
+   ```
+      ![38](./image/38.png)
+
+5. Check the github action to see if the workflow ran successfully and the Docker image was built and pushed to Docker Hub.
+
+      ![39](./image/39.png)
+
+6. Copy the image URL for the frontend service.
+
+   ![40](./image/40.png)
+
+7. **Create a New Web Service for Frontend**:
+   * Go to the Render dashboard and click on "New" > "Web Service".
+   * Select Deploy Existing Image.
+   * Choose the Docker image you pushed to Docker Hub.
+      1. Deploying Frontend:
+      * Provide the Docker image URL for the frontend service.
+         `gyeltshen23/pern-frontend`
+
+         ![41](./image/41.png)
+
+         ![42](./image/42.png)
+
+   [Live BMI Calculator URL](https://pern-frontend-1.onrender.com)
+
+   

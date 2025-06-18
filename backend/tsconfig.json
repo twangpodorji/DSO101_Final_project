@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     /* Basic Options */
-    "types": ["jest", "node"],
 
     // Target mappings for node 12 (https://github.com/microsoft/TypeScript/wiki/Node-Target-Mapping)
     "lib": ["ES2019"],                     /* Specify library files to be included in the compilation. */
@@ -74,7 +73,5 @@
       "build",
       "node_modules"
   ],
-
-  "include": ["src", "tests"]
-  
+  "include": ["src"]
 }

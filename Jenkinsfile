@@ -1,19 +1,19 @@
 pipeline {
     agent any
 
-    tools {
-        nodejs 'NodeJS 24.0.2'  // This name must match the Node.js installation name in Jenkins
-    }
-
     environment {
-        GIT_CREDENTIALS_ID = 'github-credentials' // Set this in Jenkins
-        REPO_URL = 'https://github.com/twangpodorji/DSO101_Final_project.git'
+        // Replace with your Jenkins credentials ID for GitHub
+        GIT_CREDENTIALS_ID = 'GITHUB_CREDENTIALS'
+        // Replace with your repository URL
+        REPO_URL = 'https://github.com/C-gyeltshen/DSO-FinalAssignment.git'
+        // Branch to push to
         BRANCH = 'main'
     }
 
     stages {
         stage('Checkout') {
             steps {
+                // Checkout the code using Jenkins credentials
                 checkout([
                     $class: 'GitSCM',
                     branches: [[name: "*/${env.BRANCH}"]],
@@ -28,44 +28,58 @@ pipeline {
         stage('Check Commit Message') {
             steps {
                 script {
+                    // Get the latest commit message
                     env.GIT_COMMIT_MESSAGE = sh(
                         script: "git log -1 --pretty=%B",
                         returnStdout: true
                     ).trim()
-                    echo "Commit message: ${env.GIT_COMMIT_MESSAGE}"
+                    echo "Latest commit message: ${env.GIT_COMMIT_MESSAGE}"
                 }
-            }
-        }
-
-        stage('Test') {
-            steps {
-                echo 'Running tests...'
-                sh 'cd backend && npm install && npm test'
             }
         }
 
         stage('Push to GitHub if @push') {
             when {
                 expression {
-                    return env.GIT_COMMIT_MESSAGE.contains('@push')
+                    return env.GIT_COMMIT_MESSAGE?.contains('@push')
                 }
             }
             steps {
                 script {
-                    sh '''
-                        git config user.name "jenkins"
-                        git config user.email "jenkins@example.com"
-                        
-                        git add .
-                        if git diff --cached --quiet; then
-                            echo "No changes to commit."
-                        else
-                            git commit -m "Auto commit from Jenkins [ci skip]"
+                    // Push frontend changes
+                    dir('frontend') {
+                        sh '''
+                            git config user.name "jenkins"
+                            git config user.email "jenkins@example.com"
+                            
+                            git add .
+                            if git diff --cached --quiet; then
+                            echo "No changes to commit in frontend."
+                            else
+                            git commit -m "Auto-push frontend changes [ci skip]"
                             git push origin ${BRANCH}
-                        fi
-                    '''
+                            fi
+                        '''
+                    }
+
+                    // Push backend changes
+                    dir('backend') {
+                        sh '''
+                            git config user.name "jenkins"
+                            git config user.email "jenkins@example.com"
+                            
+                            git add .
+                            if git diff --cached --quiet; then
+                            echo "No changes to commit in backend."
+                            else
+                            git commit -m "Auto-push backend changes [ci skip]"
+                            git push origin ${BRANCH}
+                            fi
+                        '''
+                    }
                 }
             }
         }
+
     }
 }
