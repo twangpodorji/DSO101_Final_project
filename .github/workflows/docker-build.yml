@@ -1,8 +1,14 @@
 name: Docker Build and Push
-on: push
+
+on:
+  push:
+    branches:
+      - master
+
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -13,22 +19,12 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
-
-      - name: Build and Push Frontend
+      - name: Build and Push Backend (Dev)
         run: |
-          #refer the docker compose file and dockerfiles from the repository
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/bmi-backend-dev:latest -f backend/Dockerfile.dev backend
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/bmi-backend-dev:latest
 
-      - name: Build and Push Backend
+      - name: Build and Push Frontend (Dev)
         run: |
-          #refer the docker compose file and dockerfiles from the repository
-
-      # Optional: DB image if not using Render's managed DB
-      - name: Build and Push DB
-        run: |
-          #refer the docker compose file and dockerfiles from the repository
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/bmi-frontend-dev:latest -f frontend/Dockerfile.dev frontend
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/bmi-frontend-dev:latest
