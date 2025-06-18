@@ -213,7 +213,7 @@ Go to Render.com and create a new web service.
 
 ![alt text](<assets/render deployment backend.png>)
 
-
+![alt text](assets/render.png)
 
 
 
