@@ -127,8 +127,6 @@ In today’s fast-paced software world, automating testing, deployment, and secu
 **1. Stage 1:** Docker Configuration
 
 
-
-
 **2. Stage2**:Jenkins Local Setup for GitHub Push Automation
 
 Configure a Jenkins pipeline to automatically push code to a GitHub repository when a commit message includes "@push".
@@ -156,8 +154,6 @@ brew services stop jenkins-lts
 
 ![alt text](<assets/git classic token .png>)
 
-
-
 Manage Jenkins → Credentials → System → Global credentials → Add Credentials
 
 - Type: Username with password
@@ -177,11 +173,6 @@ Test your pipeline
 ![alt text](<assets/Stage2 output.png>)
 
 ![alt text](assets/output2.1.png)
-
-
-
-
-
 
 
 
@@ -206,8 +197,6 @@ steps involved:
 - We will see the workflow triggered by the push.
 
 - After success, go to Docker Hub and verify images are pushed.
-
-
 
 
 ### Challenge and solution
