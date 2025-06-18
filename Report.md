@@ -21,8 +21,8 @@ In today’s fast-paced software world, automating testing, deployment, and secu
      ```gitclone
      git clone https://github.com/Darshansgit/DSO101_SE_project.git
      ```
-       
-          
+
+
      **The Project Folder Overview**
      ```Project structure
           DSO101_Final_project/
@@ -196,7 +196,34 @@ steps involved:
 
 - We will see the workflow triggered by the push.
 
+![alt text](<assets/output github actions.png>)
+
 - After success, go to Docker Hub and verify images are pushed.
+
+![alt text](<assets/dockerhub output.png>)
+
+
+3: Deploy to Render 
+
+Go to Render.com and create a new web service.
+
+- Select the Dockerhub option (Backend).
+
+- Select a existing Docker image or specify the image name that is being pushed to Docker Hub. 
+
+![alt text](<assets/render deployment backend.png>)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

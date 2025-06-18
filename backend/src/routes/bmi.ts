@@ -1,7 +1,7 @@
-import { Router, Request, Response, NextFunction } from 'express';
-import { errorHandler } from '../utils';
-import knex from 'knex';
-import { databaseConfig } from '../config';
+import { Router, Request, Response, NextFunction } from "express";
+import { errorHandler } from "../utils";
+import knex from "knex";
+import { databaseConfig } from "../config";
 
 const router = Router();
 const db = knex(databaseConfig);
@@ -12,7 +12,10 @@ const db = knex(databaseConfig);
  * @param weight - Weight in kilograms
  * @returns BMI value or an error message
  */
-export const calculateBMI = (height: number, weight: number): number | string => {
+export const calculateBMI = (
+  height: number,
+  weight: number
+): number | string => {
   if (!height || !weight) {
     return "Missing height or weight";
   }
@@ -25,48 +28,33 @@ export const calculateBMI = (height: number, weight: number): number | string =>
 
 // GET /api/user/bmi - fetch all BMI records
 router.get(
-  '/user/bmi',
+  "/user/bmi",
   errorHandler(async (req: Request, res: Response) => {
-    const records = await db('bmi_records').select('*').orderBy('created_at', 'desc');
+    const records = await db("bmi_records")
+      .select("*")
+      .orderBy("created_at", "desc");
     res.json(records);
   })
 );
 
 // POST /create/bmi - create a new BMI record
 router.post(
-  '/create/bmi',
+  "/create/bmi",
   errorHandler(async (req: Request, res: Response, next: NextFunction) => {
     const { id, height, weight, age, bmi } = req.body;
 
     if (!id || !height || !weight || !age || !bmi) {
-      return res.status(400).json({ message: 'Missing required fields' });
+      return res.status(400).json({ message: "Missing required fields" });
     }
 
-    const [record] = await db('bmi_records')
+    const [record] = await db("bmi_records")
       .insert({ id, height, weight, age, bmi })
-      .returning('*');
+      .returning("*");
 
     res.status(201).json(record);
   })
 );
 
 // POST /calculate - calculate BMI
-router.post(
-  '/calculate',
-  (req: Request<any, any, { height: number; weight: number }>, res: Response, next: NextFunction) => {
-    const { height, weight } = req.body;
-
-    // Validate input
-    if (!height || !weight) {
-      return res.status(400).json({ error: 'Missing height or weight' });
-    }
-
-    // Calculate BMI
-    const bmi = calculateBMI(height, weight);
-
-    // Return BMI
-    return res.status(200).json({ bmi });
-  }
-);
 
 export default router;
