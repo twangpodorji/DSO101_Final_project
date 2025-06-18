@@ -96,7 +96,7 @@ In today’s fast-paced software world, automating testing, deployment, and secu
      ![alt text](assets/frontend1.png)
 
      **Frotend Test**
-     
+
      ![alt text](<assets/frontend test.png>)
 
      **Backend**
@@ -179,6 +179,7 @@ Test your pipeline
 
 ![alt text](assets/output2.1.png)
 
+![alt text](<assets/jenkins finished output.png>)
 
 2.1 GitHub Actions Pipeline for Docker Builds
 
@@ -215,9 +216,13 @@ Go to Render.com and create a new web service.
 
 - Select a existing Docker image or specify the image name that is being pushed to Docker Hub. 
 
-![alt text](<assets/render deployment backend.png>)
 
-![alt text](assets/render.png)
+
+
+
+
+
+
 
 
 
