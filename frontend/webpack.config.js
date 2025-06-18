@@ -10,6 +10,7 @@ const mapObject = (object, fn) => {
 };
 
 module.exports = (env) => ({
+  mode: "development",
   entry: "./src/index.tsx",
   ...(env.production || !env.development ? {} : { devtool: "eval-source-map" }),
   resolve: {
@@ -17,8 +18,8 @@ module.exports = (env) => ({
     plugins: [new TsconfigPathsPlugin()],
   },
   output: {
-    path: path.resolve(__dirname, "build"),
-    filename: "build.js",
+    path: path.resolve(__dirname, "dist"),
+    filename: "bundle.js",
   },
   module: {
     rules: [
@@ -41,12 +42,12 @@ module.exports = (env) => ({
         },
       },
       {
-        test: /\.s[ac]ss$/i,
-        use: ["style-loader", "css-loader", "sass-loader"],
-      },
-      {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: ["style-loader", "css-loader", "sass-loader"],
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
@@ -60,10 +61,11 @@ module.exports = (env) => ({
   },
   devServer: {
     host: "0.0.0.0",
-    port: 3010,
+    port: 10000,
     headers: {
       "Access-Control-Allow-Origin": "*",
     },
+    static: path.resolve(__dirname, "dist"),
     hot: true,
     open: true,
     historyApiFallback: true,

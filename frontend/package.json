@@ -8,7 +8,7 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "start": "webpack-cli serve --mode=development --env development", 
-    "develop": "webpack-cli serve --mode=development --env development", 
+    "develop": "webpack-cli serve --mode development --env development --host 0.0.0.0 --port 10000",
     "lint": "eslint './src/**/*.{ts,tsx}'",
     "serve-build": "serve build",
     "eslint-fix": "eslint --fix src/**/*.ts",
