@@ -212,10 +212,12 @@ steps involved:
 
 Go to Render.com and create a new web service.
 
+
 - Select the Dockerhub option (Backend).
 
 - Select a existing Docker image or specify the image name that is being pushed to Docker Hub. 
 
+![alt text](<assets/render deployment backend.png>)
 
 
 

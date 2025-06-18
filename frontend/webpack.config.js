@@ -12,10 +12,8 @@ const mapObject = (object, fn) => {
 module.exports = (env) => ({
   mode: "development",
   entry: "./src/index.tsx",
-  ...(env.production || !env.development ? {} : { devtool: "eval-source-map" }),
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx"],
-    plugins: [new TsconfigPathsPlugin()],
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -24,77 +22,20 @@ module.exports = (env) => ({
   module: {
     rules: [
       {
-        test: /\.(ts|tsx)?$/,
-        loader: "ts-loader",
-        options: {
-          transpileOnly: true,
-        },
+        test: /\.(ts|tsx)$/,
+        use: "ts-loader",
         exclude: /node_modules/,
       },
       {
-        test: /\.m?jsx?$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: ["@babel/preset-env", "@babel/preset-react"],
-          },
-        },
-      },
-      {
-        test: /\.css$/i,
+        test: /\.css$/,
         use: ["style-loader", "css-loader"],
-      },
-      {
-        test: /\.s[ac]ss$/i,
-        use: ["style-loader", "css-loader", "sass-loader"],
-      },
-      {
-        test: /\.(png|jpe?g|gif)$/i,
-        use: [
-          {
-            loader: "file-loader",
-          },
-        ],
       },
     ],
   },
   devServer: {
     host: "0.0.0.0",
     port: 10000,
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-    },
     static: path.resolve(__dirname, "dist"),
     hot: true,
-    open: true,
-    historyApiFallback: true,
-    proxy: {
-      "/api": {
-        target: {
-          host: "localhost",
-          protocol: "http:",
-          port: 3000,
-        },
-        changeOrigin: true,
-        secure: false,
-      },
-    },
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: "./public/index.html",
-      favicon: "./public/favicon.ico",
-      publicPath: "/",
-    }),
-    new webpack.DefinePlugin({
-      ...mapObject(env, ([key, value]) => ({
-        [`process.env.${key}`]: JSON.stringify(value),
-      })),
-      "process.env.PRODUCTION": JSON.stringify(env.production || false),
-      "process.env.API_HOST": JSON.stringify(env.API_HOST || "/api"),
-      "process.env.NAME": JSON.stringify(packageJson.name),
-      "process.env.VERSION": JSON.stringify(packageJson.version),
-    }),
-  ],
 });
